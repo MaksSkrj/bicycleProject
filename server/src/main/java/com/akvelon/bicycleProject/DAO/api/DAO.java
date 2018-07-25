@@ -1,7 +1,5 @@
 package com.akvelon.bicycleProject.DAO.api;
 
-import com.akvelon.bicycleProject.model.Entity;
-
 import java.util.List;
 
 /**

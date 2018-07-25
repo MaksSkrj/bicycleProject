@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bike</title>
+
+    <style>
+        table.fixed {table-layout:fixed; width:90px;}/*Setting the table width is important!*/
+        table.fixed td {overflow:hidden;}/*Hide text outside the cell.*/
+        table.fixed td:nth-of-type(1) {width:100px;}/*Setting the width of column 1.*/
+        table.fixed td:nth-of-type(2) {width:100px;}/*Setting the width of column 2.*/
+        table.fixed td:nth-of-type(3) {width:500px;}/*Setting the width of column 3.*/
+    </style>
+</head>
+<body>
+<div>
+    <table id="topFive" class="fixed" border="1">
+        <tr>
+            <td>Name</td>
+            <td>Surname</td>
+            <td>Sex</td>
+            <td>DOB</td>
+            <td>Delete</td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

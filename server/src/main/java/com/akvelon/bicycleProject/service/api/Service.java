@@ -15,4 +15,6 @@ public interface Service<T> {
     public List<T> getBy(String fieldName, String value);
 
     public void delete(Integer id);
+
+
 }
