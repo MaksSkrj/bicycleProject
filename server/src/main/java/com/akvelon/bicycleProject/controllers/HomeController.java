@@ -8,11 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.akvelon.bicycleProject.model.Clazz.L;
-import static com.akvelon.bicycleProject.model.ProductLine.T;
-import static com.akvelon.bicycleProject.model.Style.M;
-
-
 /**
  * Created by maksym.skrypnyk
  */
@@ -26,16 +21,6 @@ public class HomeController {
     @RequestMapping("/bike/getAll")
     public List<Product> getAllProducts() {
         return productService.getAll();
-    }
-
-    @RequestMapping("/bike/insert")
-    public void insertProduct() {
-        productService.insert("FIRST", "adfdsfsdf", "PURPLE", 213, 213, 100., 12321321., "BIG", 10., T, L, M);
-    }
-
-    @RequestMapping("/bike/update/{id}")
-    public void updateProduct(@PathVariable("id") String id) {
-        productService.update("FIRST", "UPDATED", "PURPLE", 213, 213, 100., 123, "BIG", 10., T, L, M, id);
     }
 
     @RequestMapping("bike/get/{id}")
@@ -53,13 +38,25 @@ public class HomeController {
         return productService.getTopFive();
     }
 
+    @RequestMapping("bike/search/{searchRequest}")
+    public List<Product> search(@PathVariable("searchRequest") String searchRequest) {
+        return productService.productSearch(searchRequest);
+    }
+
+    @RequestMapping(value = "bike/insert", method = RequestMethod.POST)
+    public void insertProduct(@RequestBody Product product) {
+        productService.insert(product);
+    }
+
+    @RequestMapping("/bike/update/{id}")
+    public void updateProduct(@RequestBody Product product, @PathVariable("id") String id) {
+        productService.update(product, id);
+    }
+
     @RequestMapping("bike/delete/{id}")
     public void delete(@PathVariable("id") String id) {
         productService.delete(Integer.parseInt(id));
     }
 
-    @RequestMapping("bike/search/{searchRequest}")
-    public List<Product> search(@PathVariable("searchRequest") String searchRequest) {
-        return productService.productSearch(searchRequest);
-    }
+
 }

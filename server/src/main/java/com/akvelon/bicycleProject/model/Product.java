@@ -7,7 +7,7 @@ import java.util.List;
  * Created by maksym.skrypnyk
  */
 
-public class Product{
+public class Product {
     private int productId;
     private String name;
     private String productNumber;
@@ -23,7 +23,7 @@ public class Product{
     private Style style;
     private Date modifiedDate;
 
-    public Product(){
+    public Product() {
 
     }
 

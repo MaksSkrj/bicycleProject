@@ -1,11 +1,9 @@
 package com.akvelon.bicycleProject.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.sql.DataSource;
 
 /**
  * Created by maksym.skrypnyk
@@ -17,11 +15,5 @@ public class HelloController {
     public String hello(){
         return "Hello!";
     }
-
-
-
-
-
-
 
 }

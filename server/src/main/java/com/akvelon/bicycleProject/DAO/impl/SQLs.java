@@ -9,7 +9,6 @@ public class SQLs {
     public static final String FIND_BY = "Select * from %s where %s = ?";
 
 
-
     public static final String FIND_PRODUCT_BY_ID = "Select * from %s where ProductID = ?";
     public static final String DELETE_PRODUCT_BY_ID = "DELETE FROM %s WHERE ProductID = ?";
 

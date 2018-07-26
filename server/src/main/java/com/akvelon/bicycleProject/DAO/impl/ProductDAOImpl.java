@@ -20,8 +20,8 @@ import static com.akvelon.bicycleProject.DAO.impl.SQLs.*;
  */
 
 @Component
-public class ProductDAOImpl extends AbstractDAO implements DAO<Product>{
-    String classType = "product";
+public class ProductDAOImpl extends AbstractDAO implements DAO<Product> {
+    private String classType = "product";
 
     @Override
     public List<Product> getAll() {
@@ -50,22 +50,25 @@ public class ProductDAOImpl extends AbstractDAO implements DAO<Product>{
         getJdbcTemplate().update(sql, id);
     }
 
-    public void update(String name, String productNumber, String color, int safetyStockLevel, int reorderPoint, double standardCost, double listPrice, String size, double weight, ProductLine productLine, Clazz clazz, Style style, String id) {
-        Object[] properties = new Object[]{name, productNumber, color, safetyStockLevel, reorderPoint, standardCost, listPrice, size, weight, productLine.toString(), clazz.toString(), style.toString(), new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()), id};
+    public void update(Product product, String id) {
+        Object[] properties = new Object[]{product.getName(), product.getProductNumber(), product.getColor(), product.getSafetyStockLevel(),
+                product.getReorderPoint(), product.getStandardCost(), product.getListPrice(), product.getSize(), product.getWeight(), product.getProductLine().toString(),
+                product.getClazz().toString(), product.getStyle().toString(), new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()), id};
         getJdbcTemplate().update(UPDATE_PRODUCT, properties);
     }
 
-
-    public void insert(String name, String productNumber, String color, int safetyStockLevel, int reorderPoint, double standardCost, double listPrice, String size, double weight, ProductLine productLine, Clazz clazz, Style style) {
-        Object[] properties = new Object[]{name, productNumber, color, safetyStockLevel, reorderPoint, standardCost, listPrice, size, weight, productLine.toString(), clazz.toString(), style.toString(), new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis())};
+    public void insert(Product product) {
+        Object[] properties = new Object[]{product.getName(), product.getProductNumber(), product.getColor(), product.getSafetyStockLevel(),
+                product.getReorderPoint(), product.getStandardCost(), product.getListPrice(), product.getSize(), product.getWeight(), product.getProductLine().toString(),
+                product.getClazz().toString(), product.getStyle().toString(), new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis())};
         getJdbcTemplate().update(INSERT_PRODUCT, properties);
     }
 
-    public List<Product> getTopFive(){
+    public List<Product> getTopFive() {
         return getJdbcTemplate().query(GET_TOP_FIVE_BIKES, new ProductMapper());
     }
 
-    public List<Product> productSearch(String searchRequest){
+    public List<Product> productSearch(String searchRequest) {
         String sql = String.format(PRODUCT_SEARCH, searchRequest);
         return getJdbcTemplate().query(sql, new ProductMapper());
     }

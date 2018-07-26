@@ -20,7 +20,6 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductDAOImpl productDAO;
 
-
     @Override
     public List<Product> productSearch(String searchRequest) {
         return productDAO.productSearch(searchRequest);
@@ -51,11 +50,11 @@ public class ProductServiceImpl implements ProductService {
         productDAO.delete(id);
     }
 
-    public void insert(String name, String productNumber, String color, int safetyStockLevel, int reorderPoint, double standardCost, double listPrice, String size, double weight, ProductLine productLine, Clazz clazz, Style style){
-        productDAO.insert(name, productNumber, color, safetyStockLevel, reorderPoint, standardCost, listPrice, size, weight, productLine, clazz, style);
+    public void insert(Product product) {
+        productDAO.insert(product);
     }
 
-    public void update(String name, String productNumber, String color, int safetyStockLevel, int reorderPoint, double standardCost, double listPrice, String size, double weight, ProductLine productLine, Clazz clazz, Style style, String id){
-        productDAO.update(name, productNumber, color, safetyStockLevel, reorderPoint, standardCost, listPrice, size, weight, productLine, clazz, style, id);
+    public void update(Product product, String id) {
+        productDAO.update(product, id);
     }
 }
