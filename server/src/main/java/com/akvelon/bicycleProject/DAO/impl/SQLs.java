@@ -27,4 +27,7 @@ public class SQLs {
 
     public static final String PRODUCT_SEARCH = "SELECT * FROM product WHERE Name LIKE \"%%%s%%\"";
 
+    public static final String SELECT_PRODUCT_PHOTO_BY_PRODUCT_ID = "SELECT * FROM ProductPhoto LEFT JOIN ProductProductPhoto ON " +
+            "ProductPhoto.ProductPhotoID = ProductProductPhoto.ProductPhotoID WHERE ProductID = ?";
+
 }

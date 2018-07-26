@@ -1,0 +1,50 @@
+
+.app-div {
+    background-color: whitesmoke;
+    width: 100%;
+    min-height: 100vh;
+    max-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0 auto;
+}
+.search-div {
+    background:lightslategrey;
+    width: 100%;
+    height: 40px;
+
+}
+.search-input {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.search {
+    text-align: center;
+}
+.bike-shop-name {
+    color: limegreen;
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-weight: bolder;
+}
+.cell {
+    color: black;
+    padding-bottom: 200px;
+    /*padding-right: 200px;*/
+}
+.bike-table {
+    position: fixed;
+    top: 60px;
+    margin: 0 10%;
+}
+.bike-picture-div {
+    padding-bottom: 190px;
+    padding-right: 200px}
+.bike-name-div {
+    vertical-align:bottom;
+    text-align:center;
+    width: 250px;
+}

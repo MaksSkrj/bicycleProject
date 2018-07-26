@@ -1,29 +1,25 @@
 import React from 'react';
-import './index.css';
-import {getById} from "./JsonsMethods";
+import './style/Styles.css';
+import Bicycles from "./component/Bicycles";
 
 
-class App extends React.Component{
+class App extends React.Component {
     render() {
-        return(
-            <div>
-                <div>
-                    <h1>{this.props.headerProp}</h1>
-                    <h2>{this.props.contentProp}</h2>
+        return (
+            <div className='app-div'>
+                <div className='search-div'>
+                    <text className='bike-shop-name'>Vrum-Vrum Bikes</text>
+                    <div className='search-input'>
+                        <input placeholder={"Search"} type="text" className='search'/>
+                        <input type="submit" value="Submit"/>
+                    </div>
                 </div>
                 <div>
-                    <button onClick="f()" className="Cancel button">Clear</button>
+                    <Bicycles/>
                 </div>
             </div>
-
-        );
-
+        )
     }
-}
-
-function f() {
-    console.log(getById(5))
-
 }
 
 export default App;
