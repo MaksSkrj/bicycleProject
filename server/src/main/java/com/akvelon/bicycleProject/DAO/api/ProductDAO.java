@@ -1,4 +1,4 @@
-package com.akvelon.bicycleProject.service.api;
+package com.akvelon.bicycleProject.DAO.api;
 
 import com.akvelon.bicycleProject.model.Product;
 
@@ -9,13 +9,13 @@ import java.util.List;
  */
 
 
-public interface ProductService extends Service<Product> {
-    List<Product> productSearch(String expression);
-
-    List<Product> getTopFive();
+public interface ProductDAO extends DAO<Product> {
 
     void update(Product product, String id);
 
     void insert(Product product);
 
+    List<Product> getTopFive();
+
+    List<Product> productSearch(String searchRequest);
 }

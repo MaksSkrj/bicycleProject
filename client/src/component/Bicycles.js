@@ -2,12 +2,6 @@ import React from 'react';
 import Bike from "./Bike";
 import axios from 'axios'
 
-let obj = {
-    productId: 'bmx',
-    type: 'bla',
-    img: 'car'
-};
-
 export default class Bicycles extends React.Component {
     constructor() {
         super();
@@ -25,14 +19,15 @@ export default class Bicycles extends React.Component {
             productLine: [],
             clazz: [],
             style: [],
-            modifiedDate: []
+            modifiedDate: [],
+            thumbNailPhoto: []
         }
     }
 
     componentDidMount() {
         axios
             .get('http://localhost:8080/bike/getTop')
-            .then(({data})=> {
+            .then(({data}) => {
                 console.log(data);
                 this.setState({
                     productId: data,
@@ -41,25 +36,27 @@ export default class Bicycles extends React.Component {
             });
     }
 
-createTop = () => {
 
-    let result = [];
 
-    result = this.state.productId.map((item) => {
-        return <Bike data={item}/>
-    });
+    createTop = () => {
 
-    return result;
+        let result = [];
 
-};
+        result = this.state.productId.map((item) => {
+            return <Bike data={item}/>
+        });
+
+        return result;
+
+    };
 
     render() {
         return (
             <div>
-                <table className='bike-table' border="1">
-                    <th>
+                <table border="1">
+                    <td>
                         {this.createTop()}
-                    </th>
+                    </td>
                 </table>
             </div>
 

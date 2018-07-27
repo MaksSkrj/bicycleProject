@@ -1,6 +1,8 @@
 import React from 'react';
 import './style/Styles.css';
 import Bicycles from "./component/Bicycles";
+//import { Icon, Input } from 'semantic-ui-react';
+
 
 
 class App extends React.Component {
@@ -8,13 +10,20 @@ class App extends React.Component {
         return (
             <div className='app-div'>
                 <div className='search-div'>
-                    <text className='bike-shop-name'>Vrum-Vrum Bikes</text>
+                    <div className='bike-shop-name'>
+                        Vrum-Vrum Bikes
+                    </div>
                     <div className='search-input'>
                         <input placeholder={"Search"} type="text" className='search'/>
-                        <input type="submit" value="Submit"/>
+                        <input className={'search-button'} type="submit" value="Submit"/>
                     </div>
                 </div>
-                <div>
+                <div className={'top-five-div'}>
+                    <div>
+                        <h1  className={'h1-text'} align="center"> Top five bikes</h1>
+                    </div>
+                </div>
+                <div className={'bike-table'}>
                     <Bicycles/>
                 </div>
             </div>

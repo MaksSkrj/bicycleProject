@@ -1,6 +1,7 @@
 package com.akvelon.bicycleProject.DAO.impl;
 
 import com.akvelon.bicycleProject.DAO.api.DAO;
+import com.akvelon.bicycleProject.DAO.api.ProductDAO;
 import com.akvelon.bicycleProject.mapper.ProductMapper;
 import com.akvelon.bicycleProject.model.Clazz;
 import com.akvelon.bicycleProject.model.Product;
@@ -20,7 +21,7 @@ import static com.akvelon.bicycleProject.DAO.impl.SQLs.*;
  */
 
 @Component
-public class ProductDAOImpl extends AbstractDAO implements DAO<Product> {
+public class ProductDAOImpl extends AbstractDAO implements ProductDAO {
     private String classType = "product";
 
     @Override
@@ -50,6 +51,7 @@ public class ProductDAOImpl extends AbstractDAO implements DAO<Product> {
         getJdbcTemplate().update(sql, id);
     }
 
+    @Override
     public void update(Product product, String id) {
         Object[] properties = new Object[]{product.getName(), product.getProductNumber(), product.getColor(), product.getSafetyStockLevel(),
                 product.getReorderPoint(), product.getStandardCost(), product.getListPrice(), product.getSize(), product.getWeight(), product.getProductLine().toString(),
@@ -57,6 +59,7 @@ public class ProductDAOImpl extends AbstractDAO implements DAO<Product> {
         getJdbcTemplate().update(UPDATE_PRODUCT, properties);
     }
 
+    @Override
     public void insert(Product product) {
         Object[] properties = new Object[]{product.getName(), product.getProductNumber(), product.getColor(), product.getSafetyStockLevel(),
                 product.getReorderPoint(), product.getStandardCost(), product.getListPrice(), product.getSize(), product.getWeight(), product.getProductLine().toString(),
@@ -64,10 +67,12 @@ public class ProductDAOImpl extends AbstractDAO implements DAO<Product> {
         getJdbcTemplate().update(INSERT_PRODUCT, properties);
     }
 
+    @Override
     public List<Product> getTopFive() {
         return getJdbcTemplate().query(GET_TOP_FIVE_BIKES, new ProductMapper());
     }
 
+    @Override
     public List<Product> productSearch(String searchRequest) {
         String sql = String.format(PRODUCT_SEARCH, searchRequest);
         return getJdbcTemplate().query(sql, new ProductMapper());

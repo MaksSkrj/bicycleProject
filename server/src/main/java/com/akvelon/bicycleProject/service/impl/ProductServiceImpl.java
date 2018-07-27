@@ -50,10 +50,12 @@ public class ProductServiceImpl implements ProductService {
         productDAO.delete(id);
     }
 
+    @Override
     public void insert(Product product) {
         productDAO.insert(product);
     }
 
+    @Override
     public void update(Product product, String id) {
         productDAO.update(product, id);
     }
