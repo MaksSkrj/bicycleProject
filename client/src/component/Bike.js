@@ -34,10 +34,18 @@ export default class Bike extends React.Component {
     }
 
 
+
+
     render() {
         return (
-            <td>
-                <div>
+            <div className={'bike-cell'} id={'topFive'}>
+                <div className={"bike-photo"}>
+                    <span className={'top-five-span'}>
+                        <div className={'color-div'}>Color: {this.props.data.color}</div>
+                        <div>Size: {this.props.data.size}</div>
+                        <div>Weight: {this.props.data.weight} kg</div>
+                        <div>Class: {this.props.data.clazz}</div>
+                    </span>
                     <img className={'bike-picture'} src={`data:image/jpeg;base64,${this.state.largePhoto}`}/><br/>
                 </div>
                 <div className={'bike-name-div'}>
@@ -46,14 +54,7 @@ export default class Bike extends React.Component {
                 <div className={'price-div'}>
                     <div>Price: {this.props.data.listPrice}$</div>
                 </div>
-                <div className={'top-five-description'}>
-                    <div className={'color-div'}>Color: {this.props.data.color}</div>
-                    <div>Size: {this.props.data.size}</div>
-                    <div>Weight: {this.props.data.weight} kg</div>
-                    <div>Class: {this.props.data.clazz}</div>
-                </div>
-
-            </td>
+            </div>
         );
     };
 }

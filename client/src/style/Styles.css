@@ -49,11 +49,7 @@
     font-family: "Great Vibes", cursive;
     text-shadow: 0 1px 1px black;
 }
-.cell {
-    color: black;
-    padding-bottom: 200px;
-    /*padding-right: 200px;*/
-}
+
 .bike-table {
     position: relative;;
     margin: 0 10%;
@@ -61,13 +57,14 @@
 .bike-name-div {
     vertical-align:bottom;
     text-align:center;
-    width: 250px;
+    /*width: 250px;*/
     font-weight: bolder;
 }
 .bike-picture {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    border: 1px solid #777;
 }
 .color-div {
     margin-top: 10px;
@@ -76,16 +73,40 @@
 .top-five-div {
     position: relative;
     width: 100%;
-    height: auto
+    /*height: auto*/
 }
 
 .price-div {
     vertical-align:bottom;
-    text-align:right;
+    text-align:center;
 }
 
 .top-five-description {
     float: left;
+}
+
+.top-five-span {
+    float: left;
+    background-color:rgba(0, 0, 0, 0.6);
+    /*top:0px;*/
+    transition-duration:0.4s;
+    padding:10px 0;
+    position: absolute;
+    text-align:center;
+    color:#fff;
+    font-size:12px;
+    font-weight:bold;
+    line-height:16px;
+    margin:0;
+    display:block;
+    width:19%;
+    opacity: 0;
+    visibility: unset;
+}
+
+.bike-photo:hover .top-five-span{
+    /*top:0px;*/
+    opacity: 50;
 }
 
 .h1-text{
@@ -95,6 +116,23 @@
     font-weight: 400;
     font-style: italic;
     line-height: 44px;
-    margin: 0 0 12px;
+    margin: 0 auto 10px;
     text-align: center;
+    width: 20%;
 }
+
+.bike-cell {
+    float: left;
+    width: max-content;
+    /*max-width: 18%;*/
+    /*min-width: 18%;*/
+    /*height: 60%;*/
+    /*padding-right: 20px;*/
+    margin: 0 1% 0 0;
+}
+
+.h1-text:hover {
+    cursor: pointer;
+    color: slategrey;
+}
+

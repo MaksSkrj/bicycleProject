@@ -20,7 +20,8 @@ export default class Bicycles extends React.Component {
             clazz: [],
             style: [],
             modifiedDate: [],
-            thumbNailPhoto: []
+            thumbNailPhoto: [],
+            arr: []
         }
     }
 
@@ -30,36 +31,46 @@ export default class Bicycles extends React.Component {
             .then(({data}) => {
                 console.log(data);
                 this.setState({
-                    productId: data,
-                    name: data
+                    arr: data
                 });
             });
+
     }
 
-
-
     createTop = () => {
-
         let result = [];
 
-        result = this.state.productId.map((item) => {
+        result = this.state.arr.map((item) => {
             return <Bike data={item}/>
         });
 
         return result;
+    };
 
+    search = (id) => {
+        axios
+            .get('localhost:8080/bike/search/' + id)
+            .then(({data}) => {
+                console.log(data);
+                this.setState({
+                    arr: data,
+                });
+            });
+        let result = [];
+
+        result = this.state.arr.map((item) => {
+            return <Bike data={item}/>
+        });
+
+        return result;
     };
 
     render() {
         return (
             <div>
-                <table border="1">
-                    <td>
-                        {this.createTop()}
-                    </td>
-                </table>
+                {this.createTop()}
+                {this.search('road-650')}
             </div>
-
         )
     }
 
