@@ -15,11 +15,14 @@ class App extends React.Component {
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         // Creating topFive
-        this.setState({
-            arr: []
-        });
+        this.createTopFive();
+
+
+    }
+
+    createTopFive = () => {
         axios
             .get('http://localhost:8080/bike/getTop')
             .then((res) => {
@@ -29,11 +32,13 @@ class App extends React.Component {
                     arr.push(<Bike data={item}/>)
                 });
                 this.setState({
-                    arr: arr
-                })
+                    arr: [],
+                });
+                this.setState({
+                    arr: arr,
+                });
             });
-
-    }
+    };
 
     search = () => {
         if (this.state.inputValue.length < 2){
@@ -44,7 +49,7 @@ class App extends React.Component {
                 .then((res) => {
                     let arr = [];
                     console.log(res);
-                    if (this.state.arr.length !== 0) {
+                    if (res.data.length !== 0) {
                         res.data.forEach((item) => {
                             arr.push(<Bike data={item}/>)
                         });
@@ -81,7 +86,7 @@ class App extends React.Component {
                 </div>
                 <div className={'h1div'}>
                     <div>
-                        <h1 className={'h1-text'} onClick={this.componentDidMount}>
+                        <h1 className={'h1-text'} onClick={this.createTopFive}>
                             Top five bikes
                         </h1>
                     </div>
