@@ -1,8 +1,4 @@
-
-
-
 .app-div {
-    background-color: whitesmoke;
     width: 100%;
     min-height: 100vh;
     max-height: 100%;
@@ -51,8 +47,8 @@
 }
 
 .bike-table {
-    position: relative;;
-    margin: 0 10%;
+    position: relative;
+    width: 100%;
 }
 .bike-name-div {
     vertical-align:bottom;
@@ -61,9 +57,10 @@
     font-weight: bolder;
 }
 .bike-picture {
+    position: relative;
     display: block;
-    /*margin-left: auto;*/
-    /*margin-right: auto;*/
+    margin: 0 0 0 0;
+    width: 100%;
     border: 1px solid #777;
 }
 .color-div {
@@ -85,10 +82,10 @@
     float: left;
 }
 
-.top-five-span {
-    float: left;
+.top-five-info {
+    /*float: left;*/
     background-color:rgba(0, 0, 0, 0.6);
-    /*top:0px;*/
+    top:0;
     transition-duration:0.4s;
     padding:10px 0;
     position: absolute;
@@ -99,14 +96,18 @@
     line-height:16px;
     margin:0;
     display:block;
-    width:19%;
+    width:100%;
     opacity: 0;
-    visibility: unset;
+    /*visibility: unset;*/
+    border: 1px solid #777;
 }
 
-.bike-photo:hover .top-five-span{
-    /*top:0px;*/
-    opacity: 50;
+.bike-photo{
+    position: relative;
+}
+
+.bike-photo:hover .top-five-info {
+    opacity: 1;
 }
 
 .h1-text{
@@ -125,14 +126,20 @@
     float: left;
     width: max-content;
     /*max-width: 18%;*/
-    /*min-width: 18%;*/
+    min-width: 17%;
     /*height: 60%;*/
     /*padding-right: 20px;*/
-    margin: 0 1% 0 0;
+    margin-left: 2.5%;
+    margin-bottom: 2%;
 }
 
 .h1-text:hover {
     cursor: pointer;
     color: slategrey;
 }
+
+.test {
+    width: 100%;
+}
+
 

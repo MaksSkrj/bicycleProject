@@ -1,11 +1,71 @@
 import React from 'react';
 import './style/Styles.css';
+import axios from 'axios';
 import Bicycles from "./component/Bicycles";
-
-//import { Icon, Input } from 'semantic-ui-react';
+import Bike from "./component/Bike"
 
 
 class App extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            inputValue: "bla",
+            arr: [],
+            err: ""
+        }
+    }
+
+    componentDidMount() {
+        // Creating topFive
+        this.setState({
+            arr: []
+        });
+        axios
+            .get('http://localhost:8080/bike/getTop')
+            .then((res) => {
+                let arr = [];
+                console.log(res);
+                res.data.forEach((item) => {
+                    arr.push(<Bike data={item}/>)
+                });
+                this.setState({
+                    arr: arr
+                })
+            });
+
+    }
+
+    search = () => {
+        if (this.state.inputValue.length < 2){
+            alert("Need more information about searching product")
+        }else {
+            axios
+                .get('http://localhost:8080/bike/search/' + this.state.inputValue)
+                .then((res) => {
+                    let arr = [];
+                    console.log(res);
+                    if (this.state.arr.length !== 0) {
+                        res.data.forEach((item) => {
+                            arr.push(<Bike data={item}/>)
+                        });
+                        this.setState({
+                            arr: []
+                        });
+                        this.setState({
+                            arr: arr
+                        })
+                    } else {
+                        alert("Sorry there isn't any product that you searching")
+                    }
+                });
+        }
+    };
+
+    inputChange = (e) => {
+        this.setState({
+            inputValue: e.target.value
+        })
+    };
 
     render() {
         return (
@@ -15,19 +75,19 @@ class App extends React.Component {
                         Vrum-Vrum Bikes
                     </div>
                     <div className='search-input'>
-                        <input placeholder={"Search"} type="text" className='search'/>
-                        <input className={'search-button'} type="submit" value="Submit"/>
+                        <input className='search' placeholder={"Search"} type="text" onChange={this.inputChange}/>
+                        <input className={'search-button'} type="submit" value="Submit" onClick={this.search}/>
                     </div>
                 </div>
                 <div className={'h1div'}>
                     <div>
-                        <h1 className={'h1-text'}>
+                        <h1 className={'h1-text'} onClick={this.componentDidMount}>
                             Top five bikes
                         </h1>
                     </div>
                 </div>
                 <div className={'bike-table'}>
-                    <Bicycles/>
+                    <Bicycles arr={this.state.arr}/>
                 </div>
             </div>
         )
