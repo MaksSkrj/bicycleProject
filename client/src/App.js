@@ -2,7 +2,9 @@ import React from 'react';
 import './style/Styles.css';
 import axios from 'axios';
 import Bicycles from "./component/Bicycles";
-import Bike from "./component/Bike"
+import Bike from "./component/Bike";
+import 'semantic-ui-css/semantic.min.css';
+import { Divider, Icon, Input} from 'semantic-ui-react'
 
 
 class App extends React.Component {
@@ -18,9 +20,8 @@ class App extends React.Component {
     componentWillMount() {
         // Creating topFive
         this.createTopFive();
-
-
     }
+
 
     createTopFive = () => {
         axios
@@ -76,12 +77,11 @@ class App extends React.Component {
         return (
             <div className='app-div'>
                 <div className='search-div'>
-                    <div className='bike-shop-name'>
-                        Vrum-Vrum Bikes
+                    <div>
+                        <h2 className='bike-shop-name'>Vrum-Vrum Bikes</h2>
                     </div>
                     <div className='search-input'>
-                        <input className='search' placeholder={"Search"} type="text" onChange={this.inputChange}/>
-                        <input className={'search-button'} type="submit" value="Submit" onClick={this.search}/>
+                        <Input icon={<Icon name='search' inverted circular link onClick={this.search}/>} onChange={this.inputChange} placeholder='Search...' />
                     </div>
                 </div>
                 <div className={'h1div'}>
@@ -89,6 +89,7 @@ class App extends React.Component {
                         <h1 className={'h1-text'} onClick={this.createTopFive}>
                             Top five bikes
                         </h1>
+                        <Divider />
                     </div>
                 </div>
                 <div className={'bike-table'}>

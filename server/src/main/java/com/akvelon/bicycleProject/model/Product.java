@@ -11,6 +11,7 @@ public class Product {
     private int productId;
     private String name;
     private String productNumber;
+    private int finishedFoodsFlag;
     private String color;
     private int safetyStockLevel;
     private int reorderPoint;
@@ -27,10 +28,11 @@ public class Product {
 
     }
 
-    public Product(int productId, String name, String productNumber, String color, int safetyStockLevel, int reorderPoint, double standartCost, double listPrice, String size, double weight, ProductLine productLine, Clazz clazz, Style style, Date modifiedDate) {
+    public Product(int productId, String name, String productNumber, int finishedFoodsFlag, String color, int safetyStockLevel, int reorderPoint, double standartCost, double listPrice, String size, double weight, ProductLine productLine, Clazz clazz, Style style, Date modifiedDate) {
         this.productId = productId;
         this.name = name;
         this.productNumber = productNumber;
+        this.finishedFoodsFlag = finishedFoodsFlag;
         this.color = color;
         this.safetyStockLevel = safetyStockLevel;
         this.reorderPoint = reorderPoint;
@@ -66,6 +68,14 @@ public class Product {
 
     public void setProductNumber(String productNumber) {
         this.productNumber = productNumber;
+    }
+
+    public int getFinishedFoodsFlag() {
+        return finishedFoodsFlag;
+    }
+
+    public void setFinishedFoodsFlag(int finishedFoodsFlag) {
+        this.finishedFoodsFlag = finishedFoodsFlag;
     }
 
     public String getColor() {
@@ -162,6 +172,7 @@ public class Product {
                 "productId='" + productId + '\'' +
                 "name='" + name + '\'' +
                 ", productNumber='" + productNumber + '\'' +
+                ", finishedGoodsFlag'" + finishedFoodsFlag + '\'' +
                 ", color='" + color + '\'' +
                 ", safetyStockLevel=" + safetyStockLevel +
                 ", reorderPoint=" + reorderPoint +
