@@ -34,7 +34,7 @@ public class SQLs {
             "WHERE productsubcategory.ProductCategoryID = 1 AND FinishedGoodsFlag = 1 GROUP BY product.ProductID ORDER BY count(*) DESC LIMIT 5 ";
 
     //SEARCHING product
-    public static final String PRODUCT_SEARCH = "SELECT * FROM product WHERE Name LIKE \"%%%s%%\"";
+    public static final String PRODUCT_SEARCH = "SELECT * FROM product WHERE Name LIKE \"%%%s%%\" AND FinishedGoodsFlag = 1";
 
     //SELECT ProductPhoto using ProductID
     public static final String SELECT_PRODUCT_PHOTO_BY_PRODUCT_ID = "SELECT * FROM ProductPhoto LEFT JOIN ProductProductPhoto ON " +

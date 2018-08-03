@@ -2,41 +2,27 @@ import React from 'react';
 import axios from 'axios';
 import { Card, Icon, Button, Image, Modal, Header } from 'semantic-ui-react'
 
-import PropTypes from 'prop-types';
-
-
-
-
 export default class Bike extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            productId: props.data.productId,
+            productId: props.data.productId
         }
     }
-
-
 
     componentDidMount() {
         axios
             .get('http://localhost:8080/photo/get/' + this.state.productId)
             .then(({data}) => {
                 this.setState({
-                    productPhotoId: data[0].productPhotoId,
-                    thumbNailPhoto: data[0].thumbNailPhoto,
-                    thumbNailPhotoFileName: data[0].thumbNailPhotoFileName,
                     largePhoto: data[0].largePhoto,
-                    largePhotoFileName: data[0].largePhotoFileName,
-                    modifiedDate: data[0].modifiedDate
                 });
-                console.log(data)
             });
     }
 
-
     render() {
-        const {fullScreen } = this.props;
+        const {name } = this.props.data;
         return (
             <div className={'bike-cell'}>
                 <Card className={'card'}>
@@ -48,8 +34,8 @@ export default class Bike extends React.Component {
                         </Card.Meta>
                     </Card.Content>
                     <Card.Content extra>
-                            <Icon name='money' />
-                            {this.props.data.listPrice} $
+                        <Icon name='money' />
+                        {this.props.data.listPrice}
                     </Card.Content>
                 </Card>
                 <Modal trigger={<Button className={'delete-button'}>View Details</Button>} closeIcon>
@@ -57,7 +43,7 @@ export default class Bike extends React.Component {
                     <Modal.Content image>
                         <Image wrapped size='medium' src={`data:image/jpeg;base64,${this.state.largePhoto}`} />
                         <Modal.Description>
-                            <Header><b>{this.props.data.name}</b></Header>
+                            <Header><b>{name}</b></Header>
                             <p><b>Number: </b> {this.props.data.productNumber}</p>
                             <p><b>Color: </b> {this.props.data.color} </p>
                             <p><b>Size: </b> {this.props.data.size}</p>
@@ -74,11 +60,4 @@ export default class Bike extends React.Component {
             </div>
         );
     };
-
-
-
 }
-
-Bike.propTypes = {
-    fullScreen: PropTypes.bool.isRequired,
-};

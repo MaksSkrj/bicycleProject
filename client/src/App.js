@@ -4,16 +4,15 @@ import axios from 'axios';
 import Bicycles from "./component/Bicycles";
 import Bike from "./component/Bike";
 import 'semantic-ui-css/semantic.min.css';
-import { Divider, Icon, Input} from 'semantic-ui-react'
+import {Divider, Icon, Input} from 'semantic-ui-react'
 
 
-class App extends React.Component {
+export default class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            inputValue: "bla",
             arr: [],
-            err: ""
+            inputValue: ""
         }
     }
 
@@ -21,7 +20,6 @@ class App extends React.Component {
         // Creating topFive
         this.createTopFive();
     }
-
 
     createTopFive = () => {
         axios
@@ -42,9 +40,12 @@ class App extends React.Component {
     };
 
     search = () => {
-        if (this.state.inputValue.length < 2){
+        if (this.state.inputValue.length === 0) {
+            this.createTopFive();
+        }
+        else if (this.state.inputValue.length < 2) {
             alert("Need more information about searching product")
-        }else {
+        } else {
             axios
                 .get('http://localhost:8080/bike/search/' + this.state.inputValue)
                 .then((res) => {
@@ -81,7 +82,8 @@ class App extends React.Component {
                         <h2 className='bike-shop-name'>Vrum-Vrum Bikes</h2>
                     </div>
                     <div className='search-input'>
-                        <Input icon={<Icon name='search' inverted circular link onClick={this.search}/>} onChange={this.inputChange} placeholder='Search...' />
+                        <Input icon={<Icon name='search' inverted circular link onClick={this.search}/>}
+                               onChange={this.inputChange} placeholder='Search...'/>
                     </div>
                 </div>
                 <div className={'h1div'}>
@@ -89,16 +91,11 @@ class App extends React.Component {
                         <h1 className={'h1-text'} onClick={this.createTopFive}>
                             Top five bikes
                         </h1>
-                        <Divider />
+                        <Divider/>
                     </div>
                 </div>
-                <div className={'bike-table'}>
-                    <Bicycles arr={this.state.arr}/>
-                </div>
+                <Bicycles arr={this.state.arr}/>
             </div>
         )
     }
 }
-
-export default App;
-
