@@ -1,7 +1,7 @@
 .app-div {
     width: 100%;
-    min-height: 100vh;
-    max-height: 100%;
+    /*min-height: 100vh;*/
+    /*max-height: 100%;*/
     position: absolute;
     top: 0;
     left: 0;
@@ -13,10 +13,13 @@
     width: 100%;
     height: 50px;
     z-index: 9999;
+    display: flex;
+    justify-content: space-between;
+    min-width: 700px;
 
 }
 .search {
-    float: right;
+    /*float: right;*/
     margin-top: 5px;
     margin-right: 10px;
 }
@@ -28,23 +31,28 @@
     margin-left: 10px;
     font-family: "Great Vibes", cursive;
     text-shadow: 0 1px 1px black;
+    white-space: nowrap;
 }
 
 .bike-table {
     position: relative;
     margin-top: 2%;
-    width: 100%;
+    /*width: 100%;*/
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .top-five-div {
     position: relative;
-    width: 100%;
+    /*width: 100%;*/
 }
 
 .h1div{
     margin-top: 50px;
-    width: 100%;
+    /*width: 100%;*/
     height: 50px;
+    min-width: 1000px;
 }
 
 .h1-text{
@@ -56,7 +64,7 @@
     line-height: 44px;
     margin: 0 auto 10px;
     text-align: center;
-    width: 100%;
+    /*width: 100%;*/
 }
 
 .bike-cell {
@@ -64,6 +72,7 @@
     width: 17%;
     margin-left: 2.5%;
     margin-bottom: 2%;
+    margin-top: 1%;
 }
 
 .pike-picture{
@@ -79,9 +88,18 @@
     float: right;
 }
 
-.get-all-button {
+.function-buttons {
     height: 37px;
     float: right;
 }
 
+.bike-table{
+    min-width: 1440px !important;
+    overflow-x: auto;
+}
+
+.insert-input{
+    margin-right: 1%;
+    margin-bottom: 1%;
+}
 

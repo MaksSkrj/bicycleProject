@@ -4,6 +4,7 @@ import 'semantic-ui-css/semantic.min.css';
 import './style/Styles.css';
 import {Divider, Icon, Input, Button} from 'semantic-ui-react';
 import {getTopFiveRes, getSearchRes, getAllRes} from './actions/BikeActions';
+import NewProductModal from './component/NewProductModal'
 
 
 export default class App extends React.Component {
@@ -24,6 +25,7 @@ export default class App extends React.Component {
     };
 
     createTopFive = () => {
+        this.cleanStates();
         getTopFiveRes().then(res =>
             this.setState({
                 bikes: res,
@@ -32,14 +34,23 @@ export default class App extends React.Component {
     };
 
     getAll = () => {
-        getAllRes().then(res =>
+        this.cleanStates();
+        getAllRes().then((res) =>
+            this.setState({
+                bikes: res,
+                currentPageName: "All Products"
+            }));
+    };
+
+    //TODO fix this
+    cleanStates = () => {
         this.setState({
-            bikes: res,
-            currentPageName: "All Products"
-        }));
+            bikes: []
+        })
     };
 
     search = () => {
+        this.cleanStates();
         if (this.state.inputValue.length === 0) {
             this.createTopFive();
         }
@@ -59,7 +70,6 @@ export default class App extends React.Component {
         }
     };
 
-
     inputChange = (e) => {
         this.setState({
             inputValue: e.target.value
@@ -67,19 +77,19 @@ export default class App extends React.Component {
     };
 
     render() {
-        console.log("BLYA")
         return (
             <div className='app-div'>
                 <div className='search-div'>
-                    <div className='search'>
-                        <Input className={'search-input'} icon={<Icon name='search' inverted circular link onClick={this.search}/>}
-                               onChange={this.inputChange} placeholder='Search...'/>
-                        <Button inverted className={'get-all-button'} onClick={this.getAll}>All products</Button>
-                        <Button inverted className={'get-all-button'} onClick={this.createTopFive}>Top Five Bikes</Button>
-
-                    </div>
                     <div>
                         <h2 className='bike-shop-name'> Vrum-Vrum Bikes</h2>
+                    </div>
+                    <div className='search'>
+                        <Input className={'search-input'}
+                               icon={<Icon name='search' inverted circular link onClick={this.search}/>}
+                               onChange={this.inputChange} placeholder='Search...'/>
+                        <Button inverted className={'function-buttons'} onClick={this.getAll}>All products</Button>
+                        <Button inverted className={'function-buttons'} onClick={this.createTopFive}>Top Five Bikes</Button>
+                        <NewProductModal/>
                     </div>
                 </div>
                 <div className={'h1div'}>
@@ -90,7 +100,7 @@ export default class App extends React.Component {
                         <Divider/>
                     </div>
                 </div>
-                <Bicycles bikes={this.state.bikes} key={this.state.bikes.id}/>
+                <Bicycles bikes={this.state.bikes}/>
             </div>
         )
     };

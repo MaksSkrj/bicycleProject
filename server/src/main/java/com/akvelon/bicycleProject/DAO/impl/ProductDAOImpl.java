@@ -65,7 +65,7 @@ public class ProductDAOImpl extends AbstractDAO implements ProductDAO {
 
     @Override
     public boolean insert(Product product) {
-        Object[] properties = new Object[]{product.getName(), product.getProductNumber(), product.getColor(), product.getSafetyStockLevel(),
+        Object[] properties = new Object[]{product.getName(), product.getProductNumber(), product.getFinishedFoodsFlag(), product.getColor(), product.getSafetyStockLevel(),
                 product.getReorderPoint(), product.getStandardCost(), product.getListPrice(), product.getSize(), product.getWeight(), product.getProductLine().toString(),
                 product.getClazz().toString(), product.getStyle().toString(), new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis())};
         getJdbcTemplate().update(INSERT_PRODUCT, properties);
