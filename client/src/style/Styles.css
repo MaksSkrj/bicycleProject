@@ -15,7 +15,7 @@
     z-index: 9999;
 
 }
-.search-input {
+.search {
     float: right;
     margin-top: 5px;
     margin-right: 10px;
@@ -56,7 +56,7 @@
     line-height: 44px;
     margin: 0 auto 10px;
     text-align: center;
-    width: 20%;
+    width: 100%;
 }
 
 .bike-cell {
@@ -66,12 +66,6 @@
     margin-bottom: 2%;
 }
 
-
-.h1-text:hover {
-    cursor: pointer;
-    color: slategrey;
-}
-
 .pike-picture{
    max-width: 17%;
     max-height: 10%;
@@ -79,6 +73,15 @@
 
 .delete-button {
     width: 48%;
+}
+
+.search-input {
+    float: right;
+}
+
+.get-all-button {
+    height: 37px;
+    float: right;
 }
 
 

@@ -14,8 +14,8 @@ public interface ProductService extends Service<Product> {
 
     List<Product> getTopFive();
 
-    void update(Product product, String id);
+    boolean update(Product product, String id);
 
-    void insert(Product product);
+    boolean insert(Product product);
 
 }

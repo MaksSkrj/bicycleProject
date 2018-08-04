@@ -46,17 +46,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void delete(Integer id) {
-        productDAO.delete(id);
+    public boolean delete(Integer id) {
+         return productDAO.delete(id);
     }
 
     @Override
-    public void insert(Product product) {
-        productDAO.insert(product);
+    public boolean insert(Product product) {
+        return productDAO.insert(product);
     }
 
     @Override
-    public void update(Product product, String id) {
-        productDAO.update(product, id);
+    public boolean update(Product product, String id) {
+        return productDAO.update(product, id);
     }
 }

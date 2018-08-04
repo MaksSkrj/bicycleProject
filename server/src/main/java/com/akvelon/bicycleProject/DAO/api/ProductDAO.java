@@ -11,9 +11,9 @@ import java.util.List;
 
 public interface ProductDAO extends DAO<Product> {
 
-    void update(Product product, String id);
+    boolean update(Product product, String id);
 
-    void insert(Product product);
+    boolean insert(Product product);
 
     List<Product> getTopFive();
 

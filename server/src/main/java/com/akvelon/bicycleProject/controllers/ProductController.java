@@ -46,18 +46,18 @@ public class ProductController {
     }
 
     @RequestMapping(value = "bike/insert", method = RequestMethod.POST)
-    public void insertProduct(@RequestBody Product product) {
-        productService.insert(product);
+    public boolean insertProduct(@RequestBody Product product) {
+        return productService.insert(product);
     }
 
     @RequestMapping("/bike/update/{id}")
-    public void updateProduct(@RequestBody Product product, @PathVariable("id") String id) {
-        productService.update(product, id);
+    public boolean updateProduct(@RequestBody Product product, @PathVariable("id") String id) {
+        return productService.update(product, id);
     }
 
     @RequestMapping("bike/delete/{id}")
-    public void delete(@PathVariable("id") String id) {
-        productService.delete(Integer.parseInt(id));
+    public boolean delete(@PathVariable("id") String id) {
+        return productService.delete(Integer.parseInt(id));
     }
 
 

@@ -16,5 +16,5 @@ public interface DAO<T> {
     public List<T> getBy(String fieldName, String value);
 
     //Deleting Object from table using ID
-    public void delete(Integer id);
+    public boolean delete(Integer id);
 }

@@ -1,62 +1,69 @@
 import React from 'react';
-import axios from 'axios';
-import { Card, Icon, Button, Image, Modal, Header } from 'semantic-ui-react'
+import {Card, Icon, Button, Image, Modal, Header} from 'semantic-ui-react'
+import {getPictureRes} from '../actions/BikeActions'
 
 export default class Bike extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            productId: props.data.productId
-        }
+        this.state = {}
     }
 
-    componentDidMount() {
-        axios
-            .get('http://localhost:8080/photo/get/' + this.state.productId)
-            .then(({data}) => {
-                this.setState({
-                    largePhoto: data[0].largePhoto,
-                });
-            });
+    componentWillMount() {
+        this.getPhotoById()
     }
+
+    getPhotoById = () => {
+        getPictureRes(this.props.bike.productId)
+            .then(res =>
+                this.setState({
+                        photo: res[0].largePhoto
+                    }
+                ))
+    };
 
     render() {
-        const {name } = this.props.data;
+
+        console.log("AAAA BLYA")
+        const {name, modifiedDate, listPrice, productNumber, color, size, weight, productLine, clazz, style} = this.props.bike;
         return (
             <div className={'bike-cell'}>
                 <Card className={'card'}>
-                    <img className={'bike-picture'} src={`data:image/jpeg;base64,${this.state.largePhoto}`}/>
+                    <img className={'bike-picture'} src={`data:image/jpeg;base64,${this.state.photo}`}/>
                     <Card.Content>
-                        <Card.Header>{this.props.data.name}</Card.Header>
+                        <Card.Header>{name}</Card.Header>
                         <Card.Meta>
-                            <span className='date'>{this.props.data.modifiedDate}</span>
+                            <span className='date'>{modifiedDate}</span>
                         </Card.Meta>
                     </Card.Content>
                     <Card.Content extra>
-                        <Icon name='money' />
-                        {this.props.data.listPrice}
+                        <Icon name='money'/> {listPrice}
+                        {/*Here modal code sorry*/}
+                        <Modal trigger={<Button floated={'right'} className={'details'}>Details</Button>} closeIcon>
+                            <Modal.Header>Information</Modal.Header>
+                            <Modal.Content image>
+                                <Image wrapped size='medium' src={`data:image/jpeg;base64,${this.state.photo}`}/>
+                                <Modal.Description>
+                                    <Header><b>{name}</b></Header>
+                                    <p><b>Number: </b> {productNumber}</p>
+                                    <p><b>Color: </b> {color} </p>
+                                    <p><b>Size: </b> {size}</p>
+                                    <p><b>Weight: </b> {weight}</p>
+                                    <p><b>Product Line: </b> {productLine}</p>
+                                    <p><b>Class: </b> {clazz}</p>
+                                    <p><b>Style: </b> {style}</p>
+                                    <p><b>Modified date: </b> {modifiedDate}</p>
+                                </Modal.Description>
+                            </Modal.Content>
+                            <Modal.Actions>
+                                <Button color='red'>
+                                    <Icon name='remove'/> Delete
+                                </Button>
+                            </Modal.Actions>
+                        </Modal>
+                        {/**/}
                     </Card.Content>
                 </Card>
-                <Modal trigger={<Button className={'delete-button'}>View Details</Button>} closeIcon>
-                    <Modal.Header>Information</Modal.Header>
-                    <Modal.Content image>
-                        <Image wrapped size='medium' src={`data:image/jpeg;base64,${this.state.largePhoto}`} />
-                        <Modal.Description>
-                            <Header><b>{name}</b></Header>
-                            <p><b>Number: </b> {this.props.data.productNumber}</p>
-                            <p><b>Color: </b> {this.props.data.color} </p>
-                            <p><b>Size: </b> {this.props.data.size}</p>
-                            <p><b>Weight: </b> {this.props.data.weight}</p>
-                            <p><b>Product Line: </b> {this.props.data.productLine}</p>
-                            <p><b>Class: </b> {this.props.data.clazz}</p>
-                            <p><b>Style: </b> {this.props.data.style}</p>
-                            <p><b>Modified date: </b> {this.props.data.modifiedDate}</p>
-                        </Modal.Description>
-                    </Modal.Content>
-                    <Modal.Actions></Modal.Actions>
-                </Modal>
-                <Button className={'delete-button'}>Delete Product</Button>
             </div>
         );
     };

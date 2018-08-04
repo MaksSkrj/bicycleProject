@@ -169,16 +169,16 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "productId='" + productId + '\'' +
-                "name='" + name + '\'' +
+                "productId=" + productId +
+                ", name='" + name + '\'' +
                 ", productNumber='" + productNumber + '\'' +
-                ", finishedGoodsFlag'" + finishedFoodsFlag + '\'' +
+                ", finishedFoodsFlag=" + finishedFoodsFlag +
                 ", color='" + color + '\'' +
                 ", safetyStockLevel=" + safetyStockLevel +
                 ", reorderPoint=" + reorderPoint +
                 ", standardCost=" + standardCost +
                 ", listPrice=" + listPrice +
-                ", size=" + size +
+                ", size='" + size + '\'' +
                 ", weight=" + weight +
                 ", productLine=" + productLine +
                 ", clazz=" + clazz +
